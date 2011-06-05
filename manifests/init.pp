@@ -2,7 +2,7 @@
 ################################################################
 # @filename : init.pp
 # @created : Sun, 05 Jun 2011 16:55:10 +1000
-# @last changed: Sun 05 Jun 2011 17:18:28 EST
+# @last changed: Sun 05 Jun 2011 20:35:52 EST
 # @author : Mick Pollard <aussielunix@gmail.com>
 ################################################################
 # Class: user
@@ -19,6 +19,6 @@
 class user inherits user::virtual {
   realize(Group["lunix"])
   realize(Group["deploy"])
-  realize(User["lunix"])
-  realize(User["deploy"])
+  realize(Ssh_user["lunix"])
+  realize(Ssh_user["deploy"])
 }

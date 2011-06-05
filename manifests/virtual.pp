@@ -2,10 +2,11 @@
 ###############################################################
 # @filename : virtual.pp
 # @created : Sun, 05 Jun 2011 16:55:10 +1000
-# @last changed: Sun 05 Jun 2011 17:27:52 EST
+# @last changed: Sun 05 Jun 2011 20:35:21 EST
 # @author : Mick Pollard <aussielunix@gmail.com>
 ###############################################################
 class user::virtual {
+  import 'definition'
 
   @group {'lunix':
     gid => '5000',
@@ -15,22 +16,18 @@ class user::virtual {
     gid => '5001',
   }
 
-  @user {'lunix':
-    ensure	=> 'present',
+  @ssh_user {'lunix':
     comment	=> 'Mick Pollard',
-    managehome	=> true,
     uid		=> '5000',
-    gid		=> 'lunix',
+    group	=> 'lunix',
     groups	=> 'sudo',
     shell	=> '/bin/bash',
   }
 
-  @user {'deploy':
-    ensure	=> 'present',
+  @ssh_user {'deploy':
     comment	=> 'application deployment user',
-    managehome	=> true,
     uid		=> '5001',
-    gid		=> 'deploy',
+    group	=> 'deploy',
     groups	=> 'sudo',
     shell	=> '/bin/bash',
   }
